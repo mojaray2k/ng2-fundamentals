@@ -1,3 +1,4 @@
+import { RouterLink } from '@angular/router';
 // Child component to the events.list.component
 
 import { Component, Input } from '@angular/core';
@@ -6,7 +7,7 @@ import { Component, Input } from '@angular/core';
  selector: 'event-thumbnail',
  template:
  `
-    <div class="well hoverwell thumbnail">
+    <div [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
         <h2>{{event?.name}}</h2>
         <div>Date: {{event?.date}}</div>
         <!-- <div [class.green]="event?.time === '8:00 am'" [ngSwitch]="event?.time">
