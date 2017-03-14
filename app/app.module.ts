@@ -1,3 +1,4 @@
+import { EventService } from './events/shared/event.service';
 import { NavBarComponent } from './nav/navbar.component';
 import { EventsAppComponent } from './events.app.component';
 import { EventsListComponent } from './events/events.list.component'
@@ -13,6 +14,7 @@ import { BrowserModule } from '@angular/platform-browser'
         EventsListComponent,
         EventThumbnailComponent
     ],
+    providers: [EventService],
     bootstrap: [EventsAppComponent]
 })
 
