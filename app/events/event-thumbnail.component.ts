@@ -1,3 +1,4 @@
+import { IEvent } from './shared/event.model';
 import { RouterLink } from '@angular/router';
 // Child component to the events.list.component
 
@@ -42,7 +43,7 @@ import { Component, Input } from '@angular/core';
  ]
 })
 export class EventThumbnailComponent{
-    @Input() event:any
+    @Input() event:IEvent
     getStartTimeClass(){
         /* First way to return an object*/
         // const isEarlyStart = this.event && this.event.time === '8:00 am'

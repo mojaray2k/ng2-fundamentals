@@ -1,3 +1,5 @@
+import { IEvent } from './shared/event.model';
+import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from './../common/toastr.service';
 import { EventService } from './shared/event.service';
 // Child component to events.app.component
@@ -18,15 +20,19 @@ import { Component, OnInit } from '@angular/core';
     `
 })
 export class EventsListComponent implements OnInit{
-  events:any[]
-    constructor(private eventService: EventService, private toastr: ToastrService){
+  events:IEvent[]
+    constructor(
+        private eventService: EventService, 
+        private toastr: ToastrService,
+        private route:ActivatedRoute
+    ){
       
     }
 
     ngOnInit() {
       //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
       //Add 'implements OnInit' to the class.
-      this.events = this.eventService.getEvents()
+      this.events = this.route.snapshot.data['events']
     }
     handleThumbnailClick(eventName){
       this.toastr.success(eventName);
