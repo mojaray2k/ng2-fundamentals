@@ -1,3 +1,4 @@
+import { UpperCasePipe } from '@angular/common/src/pipes/uppercase_pipe';
 import { IEvent } from './shared/event.model';
 import { RouterLink } from '@angular/router';
 // Child component to the events.list.component
@@ -9,8 +10,8 @@ import { Component, Input } from '@angular/core';
  template:
  `
     <div [routerLink]="['/events', event.id]" class="well hoverwell thumbnail">
-        <h2>{{event?.name}}</h2>
-        <div>Date: {{event?.date}}</div>
+        <h2>{{event?.name | uppercase}}</h2>
+        <div>Date: {{event?.date | date:'shortDate'}}</div>
         <!-- <div [class.green]="event?.time === '8:00 am'" [ngSwitch]="event?.time">
         <div [ngClass]="{green: event?.time === '8:00 am'}" [ngSwitch]="event?.time"> 
         <div [ngClass]="getStartTimeClass()" [ngSwitch]="event?.time">
@@ -22,7 +23,7 @@ import { Component, Input } from '@angular/core';
             <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
             <span *ngSwitchDefault>(Normal Start)</span>
         </div>
-        <div>Price: \${{event?.price}}</div>
+        <div>Price: {{event?.price | currency:'USD':true}}</div>
         <div *ngIf="event?.location">
             <span>Location: {{event?.location?.address}}</span>
             <span class="pad-left">{{event?.location?.city}}, {{event?.location?.country}}</span>
