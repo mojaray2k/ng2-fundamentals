@@ -1,5 +1,5 @@
+import { Component, ElementRef, Inject, Input, ViewChild } from '@angular/core';
 import { JQ_TOKEN } from './jQuery.service';
-import { Component, Input, ViewChild, ElementRef, Inject } from '@angular/core';
 
 @Component({
     selector: 'simple-modal',
@@ -24,8 +24,8 @@ import { Component, Input, ViewChild, ElementRef, Inject } from '@angular/core';
     styles:[
         `
         .modal-body{height:250px; overflow-y: scroll;}
-        `
-    ]
+        `,
+    ],
 })
 export class SimpleModalComponent {
     @Input() title: string;

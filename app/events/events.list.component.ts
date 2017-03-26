@@ -1,5 +1,5 @@
-import { IEvent } from './shared/event.model';
 import { ActivatedRoute } from '@angular/router';
+import { IEvent } from './shared/event.model';
 import { EventService } from './shared/event.service';
 // Child component to events.app.component
 
@@ -16,13 +16,13 @@ import { Component, OnInit } from '@angular/core';
                 </div>
             </div>
         </div>
-    `
+    `,
 })
 export class EventsListComponent implements OnInit{
-  events:IEvent[]
+  events:IEvent[];
     constructor(
         private eventService: EventService,
-        private route:ActivatedRoute
+        private route:ActivatedRoute,
     ){
         
     }
@@ -30,6 +30,6 @@ export class EventsListComponent implements OnInit{
     ngOnInit() {
       //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
       //Add 'implements OnInit' to the class.
-      this.events = this.route.snapshot.data['events']
+      this.events = this.route.snapshot.data['events'];
     }
 }

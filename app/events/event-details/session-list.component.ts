@@ -1,14 +1,14 @@
-import { VoterService } from './voter.service';
-import { AuthService } from './../../user/auth.service';
-import { ISession } from '../shared/index';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { ISession } from '../shared/index';
+import { AuthService } from './../../user/auth.service';
+import { VoterService } from './voter.service';
 
 @Component({
     selector: 'session-list',
-    templateUrl: 'app/events/event-details/session-list.component.html'
+    templateUrl: 'app/events/event-details/session-list.component.html',
 })
 export class SessionListComponent implements OnChanges{
-    @Input() sessions:ISession[]
+    @Input() sessions:ISession[];
     @Input() filterBy:string;
     @Input() sortBy: string;
     @Input() eventId: number;
@@ -25,7 +25,7 @@ export class SessionListComponent implements OnChanges{
     
     toggleVote(session: ISession){
         if(this.userHasVoted(session)){
-            this.voterService.deleteVoter(this.eventId, session,this.auth.currentUser.userName)
+            this.voterService.deleteVoter(this.eventId, session,this.auth.currentUser.userName);
         }else{
             this.voterService.addVoter(this.eventId, session,this.auth.currentUser.userName);
         }
@@ -34,16 +34,16 @@ export class SessionListComponent implements OnChanges{
     }
 
     userHasVoted(session: ISession){
-        return this.voterService.userHasVoted(session,this.auth.currentUser.userName)
+        return this.voterService.userHasVoted(session,this.auth.currentUser.userName);
     }
 
     filterSessions(filter){
         if(filter === 'all'){
             this.visibleSessions = this.sessions.slice(0);
         }else{
-            this.visibleSessions = this.sessions.filter( session => {
+            this.visibleSessions = this.sessions.filter( (session) => {
                 return session.level.toLocaleLowerCase() === filter;
-            })
+            });
         }
     }    
 }
@@ -54,5 +54,5 @@ function sortByNameAsc(s1: ISession, s2: ISession){
     else return -1;
 }
 function sortByVotesDesc(s1: ISession, s2: ISession){
-    return s2.voters.length - s1.voters.length
+    return s2.voters.length - s1.voters.length;
 }

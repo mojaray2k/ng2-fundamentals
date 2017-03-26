@@ -1,7 +1,7 @@
 // Parent Component
 
-import { selector } from 'rxjs/operator/multicast';
 import { Component, OnInit } from '@angular/core';
+import { selector } from 'rxjs/operator/multicast';
 import { AuthService } from './user/auth.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { AuthService } from './user/auth.service';
     `
     <nav-bar></nav-bar>
     <router-outlet></router-outlet>
-    `
+    `,
 })
 export class EventsAppComponent implements OnInit{
     constructor(private auth: AuthService){}

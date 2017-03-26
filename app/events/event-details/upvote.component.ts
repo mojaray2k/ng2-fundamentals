@@ -15,7 +15,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
         </div>
     </div>
     `,
-    styleUrls: ['/app/events/event-details/upvote.component.css']
+    styleUrls: ['/app/events/event-details/upvote.component.css'],
 })
 export class UpvoteComponent  {
     @Input() count: number;

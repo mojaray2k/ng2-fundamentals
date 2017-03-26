@@ -1,26 +1,26 @@
-import { TestBed,async,ComponentFixture } from '@angular/core/testing';
 import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
-import { SessionListComponent } from './session-list.component'
-import { UpvoteComponent }from './upvote.component';
-import { DurationPipe } from './../shared/duration.pipe';
-import { CollapsibleWellComponent } from './../../common/collapsible-well.component';
-import { VoterService } from './voter.service';
-import { AuthService } from './../../user/auth.service';
-import { ISession } from './../shared/event.model';
+import { async,ComponentFixture,TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { CollapsibleWellComponent } from './../../common/collapsible-well.component';
+import { AuthService } from './../../user/auth.service';
+import { DurationPipe } from './../shared/duration.pipe';
+import { ISession } from './../shared/event.model';
+import { SessionListComponent } from './session-list.component';
+import { UpvoteComponent }from './upvote.component';
+import { VoterService } from './voter.service';
 
 describe('SessionListComponent', () => {
     let fixture: ComponentFixture<SessionListComponent>,
         component: SessionListComponent,
         element: HTMLElement,
-        debugEl: DebugElement
+        debugEl: DebugElement;
     beforeEach(async(() => {
         let mockAuthService = {
             isAuthenticated: () => true,
-            currentUser: { userName: 'Joe'}
+            currentUser: { userName: 'Joe'},
         };
         let mockVoterService = {
-            userHasVoted: () => true
+            userHasVoted: () => true,
         };
 
         TestBed.configureTestingModule({
@@ -33,19 +33,19 @@ describe('SessionListComponent', () => {
             ],
             providers: [
                 { provide: AuthService, useValue:mockAuthService },
-                { provide: VoterService, useValue: mockVoterService }
+                { provide: VoterService, useValue: mockVoterService },
             ],
             schemas: [
-                NO_ERRORS_SCHEMA
-            ]
+                NO_ERRORS_SCHEMA,
+            ],
         }).compileComponents();
-    }))
+    }));
     beforeEach(() => {
         fixture = TestBed.createComponent(SessionListComponent);
         component = fixture.componentInstance;
         debugEl = fixture.debugElement;
         element = fixture.nativeElement;
-    })
+    });
     describe('initial display', () => {
           it('should have the correct session title', () => {
             component.sessions = [
@@ -56,8 +56,8 @@ describe('SessionListComponent', () => {
                     duration: 1,
                     level: 'beginner',
                     abstract: 'abstract',
-                    voters: ['john', 'bob']
-                }
+                    voters: ['john', 'bob'],
+                },
             ];
             component.filterBy = 'all';
             component.sortBy = 'name';
@@ -68,6 +68,6 @@ describe('SessionListComponent', () => {
             // .toContain('Session 1');
             expect(debugEl.query(By.css('[well-title]'))
             .nativeElement.textContent).toContain('Session 1');
-          })
-    })
-})
+          });
+    });
+});

@@ -1,6 +1,6 @@
 import { UpperCasePipe } from '@angular/common/src/pipes/uppercase_pipe';
-import { IEvent } from './shared/event.model';
 import { RouterLink } from '@angular/router';
+import { IEvent } from './shared/event.model';
 // Child component to the events.list.component
 
 import { Component, Input } from '@angular/core';
@@ -40,11 +40,11 @@ import { Component, Input } from '@angular/core';
      .thumbnail { min-height: 210px;}
      .pad-left { margin-left: 10px;}
      .well div { color: #bbb;}
-     `
- ]
+     `,
+ ],
 })
 export class EventThumbnailComponent{
-    @Input() event:IEvent
+    @Input() event:IEvent;
     getStartTimeClass(){
         /* First way to return an object*/
         // const isEarlyStart = this.event && this.event.time === '8:00 am'
@@ -57,12 +57,12 @@ export class EventThumbnailComponent{
 
          /* Third way to return an object*/
         if(this.event && this.event.time === '8:00 am')
-            return ['green', 'bold']
-        return []
+            return ['green', 'bold'];
+        return [];
     }
     getStartTimeStyle():any {
         if(this.event && this.event.time === '8:00 am')
-            return {'color': '#003300', 'font-weight':'bold'}
-        return {}
+            return {'color': '#003300', 'font-weight':'bold'};
+        return {};
     }
 }

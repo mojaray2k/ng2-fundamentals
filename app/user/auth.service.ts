@@ -1,24 +1,24 @@
-import { IUser } from './user.model';
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions} from '@angular/http';
+import { Headers, Http, RequestOptions, Response} from '@angular/http';
 import { Observable } from 'rxjs/Rx';
+import { IUser } from './user.model';
 
 @Injectable()
 export class AuthService {
-    public currentUser: IUser
+    public currentUser: IUser;
     constructor(private http: Http){}
     loginUser(userName: string, password: string){
         let headers =  new Headers({'Content-Type':'application/json'});
-        let options = new RequestOptions({headers: headers});
-        let loginInfo = { username: userName, password: password};
+        let options = new RequestOptions({headers});
+        let loginInfo = { username: userName, password};
 
-        return this.http.post('/api/login', JSON.stringify(loginInfo), options).do(resp => {
+        return this.http.post('/api/login', JSON.stringify(loginInfo), options).do((resp) => {
             if(resp) {
                 this.currentUser = <IUser>resp.json().user;
             }
-        }).catch(error => {
+        }).catch((error) => {
             return Observable.of(false);
-        })
+        });
     }
     isAuthenticated() {
         return !!this.currentUser;
@@ -29,10 +29,10 @@ export class AuthService {
             if(response._body){
                 return response.json();
             }else{
-                return {}
+                return {};
             }
         })
-        .do(currentUser => {
+        .do((currentUser) => {
             if(!!currentUser.userName){
                 this.currentUser = currentUser;
             }
@@ -40,11 +40,11 @@ export class AuthService {
         .subscribe();
     }
     updateCurrentUser(firstName: string, lastName: string) {
-        this.currentUser.firstName = firstName
-        this.currentUser.lastName = lastName
+        this.currentUser.firstName = firstName;
+        this.currentUser.lastName = lastName;
 
         let headers =  new Headers({'Content-Type':'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let options = new RequestOptions({headers});
 
         return this.http.put(`/api/users/${this.currentUser.id}`, JSON.stringify(this.currentUser), options);
     }
@@ -52,7 +52,7 @@ export class AuthService {
         this.currentUser = undefined;
 
         let headers =  new Headers({'Content-Type':'application/json'});
-        let options = new RequestOptions({headers: headers});
+        let options = new RequestOptions({headers});
 
         return this.http.post('/api/logout', JSON.stringify({}), options);
     }
